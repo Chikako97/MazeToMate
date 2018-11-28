@@ -1,0 +1,47 @@
+Ich, Theresa Kirsch, stelle hier kurz mal unsere Idee vor! :)
+
+Überlegungen MazeToMate:
+
+-	Tomate dient als Spielfigut
+- es wird ein Pausenmenü geben
+- Kill items/ Feinde
+-	Tomate sammelt Wassertropfen ein, um die Tore zu den anderen Welten öffnen zu können
+  Tor zu Welt 2 = 10 Wassertropfen
+  Tor zu Welt 3 = 20 Wassertropfen
+  Tor zu Welt 4 = 40 Wassertropfen
+  
+-	Aufbau Welt 1 
+    -> ist ein sich nicht änderndes Labyrinth, in dem Schatztruhen versteckt sind, die bunte Schlüssel enthalten
+    -> Je nach Farbe des Schlüssels, öffnet dieser auch nur EINE bestimmte Tür
+    -> Diese bunten Schlüssel sind auch in den anderen 3 Welten zu finden
+    -> Ziel des gesamten Spiels befindet ich hinter einer der bunten Türen ( nur mit 3 Materschlüssel zu öffnen)
+    -> Wassetropfen gibt es nur in Welt 1
+    
+-	Aufbau von Welt 2:
+    -> sich neu generierendes Labyrinth
+    -> nur durch Treppenstufen erreichbar
+    -> beinhaltet bunten und Masterschlüssel
+    -> Plattform routiert, sodass man nur durch genaues springen in das Labyrinth gelangt
+    
+- Aufbau Welt 3:
+    -> Spieler muss über sich bewegende Plattformen springen bzw. sich tragen lassen
+    -> Plattformen bewegen sich waagerecht (links, rechts, vor, zurück), von oben nach unten oder routieren auf der Stelle
+    -> Es gibt 3 sich nicht bewegende Plattformen (Eingang, Ziel mit Materschlüssel und die Zwischenplattform mit buntem 
+      Schlüssel)
+    -> man gelangt über Treppenstufen zu dieser Spielwelt
+    
+- Aufbau Welt 4:
+    -> ein sich routierender Würfel ist das Spielfeld
+    -> Würfel besitzt eine rutschige Eisoberfläche
+    -> man findet Säulen, die einem vor dem wegrutschen schützen
+    -> diese Welt beinhaltet ebenfalls einen Masterschlüssel
+    
+-	Kamera: 
+    -> third person
+    -> stopt, wenn Figur in den Abgrund fällt
+
+- Kurzbeschreibung:
+    -> Begleite die kleine Tomate Thomas auf seiner spannenden und einzigartigen Reise durch verschiedenen Welten 
+       auf der Suche nach seinem Tomatenfreund. Doch die Reise wird nicht einfach. Er muss verschiedene Hindernisse 
+       und Abgründe überwinden, um die fehlenden drei Schlüssel zu seinem Freund zu finden.
+
