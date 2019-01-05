@@ -41,6 +41,11 @@ public class cube : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-
-        }
+        boden.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        plusx.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        minusx.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        deckel.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        plusz.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        minusz.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+    }
 }
