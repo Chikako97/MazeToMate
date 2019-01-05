@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class Spielfeld : MonoBehaviour
 {
-    
-    private Vector3 startPos;
-    private Vector3 endPos;
-    private float distance = 50f;
-    public float repeatTime = 10f;
-    //Zeit, um von A nach B zu kommen
-    private float lerpTime = 10f;
-    private float currentLerpTime = 0;
-    private bool KeyHit = false;
-
     // Use this for initialization
     void Start()
     {
@@ -49,9 +39,7 @@ public class Spielfeld : MonoBehaviour
         GameObject Trepperechts7 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Trepperechts7.transform.localScale = new Vector3(2, 0.5f, 7);
         Trepperechts7.transform.Translate(40.65f, 2, 22.02f);
-        GameObject Trepperechts8 = GameObject.CreatePrimitive(PrimitiveType.Cube); //Aufzug
-        Trepperechts8.transform.localScale = new Vector3(1.5f, 0.5f, 3);
-        Trepperechts8.transform.Translate(38.8f, 0.09f, 23.81f);
+
 
 
         // Treppe zu Welt 3 (Würfel Sophie O)
@@ -75,10 +63,8 @@ public class Spielfeld : MonoBehaviour
         Treppevorn6.transform.Translate(25.13f, 3, 50);
         GameObject Treppevorn7 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Treppevorn7.transform.localScale = new Vector3(5, 0.5f, 8.5f);
-        Treppevorn7.transform.Translate(25.13f, 2.21f, 44.38f);
-        GameObject Treppevorn8 = GameObject.CreatePrimitive(PrimitiveType.Cube); //Aufzug
-        Treppevorn8.transform.localScale = new Vector3(2, 0.5f, 1.5f);
-        Treppevorn8.transform.Translate(26.63f, 0.03f, 38.92f);
+        Treppevorn7.transform.Translate(25.13f, 2, 44.38f);
+
 
 
 
@@ -104,15 +90,10 @@ public class Spielfeld : MonoBehaviour
         Treppelinks5.transform.localScale = new Vector3(3, 0.5f, 5);
         Treppelinks5.transform.Translate(-9.73f, 4, 21);
         GameObject Treppelinks6 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        Treppelinks6.transform.localScale = new Vector3(3, 0.5f, 5);
-        Treppelinks6.transform.Translate(-6.19f, 3, 21);
-        GameObject Treppelinks7 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        Treppelinks7.transform.localScale = new Vector3(5.5f, 0.5f, 10);
-        Treppelinks7.transform.Translate(-2.4f, 1.76f, 23.58f);
-        GameObject Treppelinks8 = GameObject.CreatePrimitive(PrimitiveType.Cube); //Aufzug
-        Treppelinks8.transform.localScale = new Vector3(1.5f, 0.5f, 4);
-        Treppelinks8.transform.Translate(1.19f, 0.12f, 24.35f);
-       
+        Treppelinks6.transform.localScale = new Vector3(8, 0.5f, 7);
+        Treppelinks6.transform.Translate(-4.16f, 3, 22.23f);
+
+
     }
 
     // Update is called once per frame
