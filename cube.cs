@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class cube : MonoBehaviour
 {
+    GameObject boden;
+    GameObject plusx;
+    GameObject minusx;
+    GameObject deckel;
+    GameObject plusz;
+    GameObject minusz;
 
+    GameObject newParent;
+
+    public void SetParent(GameObject newParent)
+    {
+        boden.transform.parent = newParent.transform;
+        plusx.transform.parent = newParent.transform;
+        minusx.transform.parent = newParent.transform;
+        plusz.transform.parent = newParent.transform;
+        minusz.transform.parent = newParent.transform;
+        deckel.transform.parent = newParent.transform;
+    }
 
     // Use this for initialization
     void Start () {
 
-        GameObject boden = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        boden = GameObject.CreatePrimitive(PrimitiveType.Cube);
         boden.transform.localScale = new Vector3(10, (float)0.5, 10);
         boden.transform.Translate(0, -5, 0);
 
@@ -41,11 +58,12 @@ public class cube : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        boden.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        newParent.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        /*boden.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
         plusx.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
         minusx.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
         deckel.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
         plusz.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
-        minusz.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));
+        minusz.transform.Rotate(new Vector3(Time.deltaTime * 50, 0, 0));*/
     }
 }
