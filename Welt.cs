@@ -8,13 +8,14 @@ public class Welt : MonoBehaviour
 
     //Steuerung der Spielfigur
     private Vector3 dir;
-    private float speed = 10f;
+    private float speed = 50f;
     private float sprungkraft = 7f;
-    private float gravity = 30f;
+    //private float gravity = 30f;
+    public Rigidbody rb;
     private Vector3 moveDir = Vector3.zero; 
     bool weltStehe = false;
-    float translateFaktor = 3;
-    float rotateFaktor = 100;
+   // float translateFaktor = 3;
+   // float rotateFaktor = 100;
 
     GameObject Durchgang;
     int durchgangStatus = 0;  // Status = 0 besagt, dass Spieler nichts berührt bzw alle Tore geschlossen sind
@@ -33,8 +34,8 @@ public class Welt : MonoBehaviour
 
     void Start()
     {
-
         dir = Vector3.zero;
+        rb = GetComponent<Rigidbody>();
 
         //Erzeugen der einzelnen Räume anhand des zuvor erstellten Prefab "Raum"
         GameObject[,] raum = new GameObject[4, 4];
@@ -105,6 +106,7 @@ public class Welt : MonoBehaviour
 
     void Update()
     {
+        rb.AddForce(0, 3, 0, ForceMode.Impulse);
 
         // Status 2 = "Oeffne Tür" wurde aktiviert und es oeffnet sich selbstständig und Spieler entfärbt sich und kann weiter gehen
         if (durchgangStatus == 2)
@@ -156,8 +158,8 @@ public class Welt : MonoBehaviour
         //Steuerung der Spielfigur
         if (!weltStehe)
         {
-            transform.Translate(new Vector3(0, 0, translateFaktor * Time.deltaTime * Input.GetAxis("Vertical")));
-            transform.Rotate(new Vector3(0, rotateFaktor * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
+            //rb.AddRelativeForce(new Vector3(0, 0, translateFaktor * Time.deltaTime * Input.GetAxis("Vertical")));
+            //transform.Rotate(new Vector3(0, rotateFaktor * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
 
             CharacterController controller = gameObject.GetComponent<CharacterController>();
 
@@ -168,13 +170,13 @@ public class Welt : MonoBehaviour
                 moveDir *= speed;
 
                 // Figur zum springen bringen
-                if (Input.GetButtonUp("Jump"))
-                {
-                    moveDir.y = sprungkraft;
-                }
+               /* if (Input.GetButtonUp("Jump"))
+                } 
+                   moveDir.y = sprungkraft;
+                } */
             }
-            moveDir.y -= gravity * Time.deltaTime;
-            controller.Move(moveDir * Time.deltaTime);
+             //moveDir.y -= gravity * Time.deltaTime;
+             controller.Move(moveDir * Time.deltaTime); 
         } 
     }
 
