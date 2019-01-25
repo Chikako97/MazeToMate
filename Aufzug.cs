@@ -24,7 +24,7 @@ public class Aufzug : MonoBehaviour
         bewegung = false;
         Gesamtzeit = 5;
         startPos = new Vector3(0, 0.09f, 0);
-        endPos = new Vector3(0, 2, 0);
+        endPos = new Vector3(0, 3f, 0);
         Gesamtstrecke = endPos - startPos;
 
     }
@@ -66,7 +66,7 @@ public class Aufzug : MonoBehaviour
             transform.position = endPos - Strecke;
             transform.position = endPos - Strecke;
 
-            if (zeit >= 1)
+            if (zeit >= 2)
             {
                 bewegung = false;
             }
