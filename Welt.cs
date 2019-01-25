@@ -6,18 +6,18 @@ public class Welt : MonoBehaviour
 {
     public GameObject raumPrefab;
 
-    //Steuerung der Spielfigur
-    private Vector3 dir;
-    private float speed = 50f;
-    private float sprungkraft = 7f;
-    //private float gravity = 30f;
-    public Rigidbody rb;
-    private Vector3 moveDir = Vector3.zero; 
+    [SerializeField] Rigidbody rb;
     bool weltStehe = false;
-   // float translateFaktor = 3;
-   // float rotateFaktor = 100;
+    //float horizontal;
+   // float vertical;
+    float jump;
+    //[SerializeField] float moveSpeed;
+    //[SerializeField] float turnSpeed;
+    
+    float translateFaktor = 3;
+    float rotateFaktor = 100;
 
-    GameObject Durchgang;
+    GameObject Tor;
     int durchgangStatus = 0;  // Status = 0 besagt, dass Spieler nichts berührt bzw alle Tore geschlossen sind
     public Material schwarzMat;
     public Material rot;
@@ -34,9 +34,6 @@ public class Welt : MonoBehaviour
 
     void Start()
     {
-        dir = Vector3.zero;
-        rb = GetComponent<Rigidbody>();
-
         //Erzeugen der einzelnen Räume anhand des zuvor erstellten Prefab "Raum"
         GameObject[,] raum = new GameObject[4, 4];
 
@@ -104,15 +101,13 @@ public class Welt : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        rb.AddForce(0, 3, 0, ForceMode.Impulse);
-
-        // Status 2 = "Oeffne Tür" wurde aktiviert und es oeffnet sich selbstständig und Spieler entfärbt sich und kann weiter gehen
+       // Status 2 = "Oeffne Tür" wurde aktiviert und es oeffnet sich selbstständig und Spieler entfärbt sich und kann weiter gehen
         if (durchgangStatus == 2)
         {
-            Durchgang.transform.position = Durchgang.transform.position + new Vector3(0, Time.deltaTime, 0);
-            if (Durchgang.transform.position.y >= 1.5f)
+            Tor.transform.position = Tor.transform.position + new Vector3(0, Time.deltaTime, 0);
+            if (Tor.transform.position.y >= 1.5f)
             {
                 durchgangStatus = 3;
                 weltStehe = false;
@@ -123,8 +118,8 @@ public class Welt : MonoBehaviour
         // Tür schließt sich
         else if (durchgangStatus == 4)
         {
-            Durchgang.transform.position = Durchgang.transform.position - new Vector3(0, Time.deltaTime, 0);
-            if (Durchgang.transform.position.y <= 0.5f)
+            Tor.transform.position = Tor.transform.position - new Vector3(0, Time.deltaTime, 0);
+            if (Tor.transform.position.y <= 0.5f)
             {
                 durchgangStatus = 0;
             }
@@ -158,49 +153,38 @@ public class Welt : MonoBehaviour
         //Steuerung der Spielfigur
         if (!weltStehe)
         {
-            //rb.AddRelativeForce(new Vector3(0, 0, translateFaktor * Time.deltaTime * Input.GetAxis("Vertical")));
-            //transform.Rotate(new Vector3(0, rotateFaktor * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
-
-            CharacterController controller = gameObject.GetComponent<CharacterController>();
-
-            if (controller.isGrounded)
+            transform.Translate(new Vector3(0, 0, translateFaktor * Time.deltaTime * Input.GetAxis("Vertical")));
+            transform.Rotate(new Vector3(0, rotateFaktor * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
+           
+            if (Input.GetButtonUp("Jump"))
             {
-                moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-                moveDir = transform.TransformDirection(moveDir);
-                moveDir *= speed;
-
-                // Figur zum springen bringen
-               /* if (Input.GetButtonUp("Jump"))
-                } 
-                   moveDir.y = sprungkraft;
-                } */
+            rb.AddForce(0, 4, 0, ForceMode.Impulse);
             }
-             //moveDir.y -= gravity * Time.deltaTime;
-             controller.Move(moveDir * Time.deltaTime); 
-        } 
+
+        }
     }
 
     // Reaktion bei Beruehrung wird ausgelöst = Spieler wird betäubt und verfärtb
-    void OnTriggerEnter(Collider other, Collider coll)
+    void OnTriggerEnter(Collider other)
     {
-        if (coll.gameObject.tag == "Tor")
+        if (other.gameObject.tag == "Tor")
         {
-            Durchgang = coll.gameObject;
+            Tor = other.gameObject;
             durchgangStatus = 1;
             weltStehe = true;
             gameObject.GetComponent<Renderer>().material = schwarzMat;
         }
-        else if (coll.gameObject.tag == "Truhe")
+        else if (other.gameObject.tag == "Truhe")
         {
-            truhe = coll.gameObject;
+            truhe = other.gameObject;
             truheIndex = System.Convert.ToInt32(truhe.name.Substring(5, 1));
             truheStatus = 1;
             weltStehe = true;
             gameObject.GetComponent<Renderer>().material = schwarzMat;
         }
-        else if (coll.gameObject.tag == "Sperre")
+        else if (other.gameObject.tag == "Sperre")
         {
-            sperreIndex = System.Convert.ToInt32(coll.gameObject.name.Substring(6, 1));
+            sperreIndex = System.Convert.ToInt32(other.gameObject.name.Substring(6, 1));
             sperreStatus = 1;
             weltStehe = true;
             gameObject.GetComponent<Renderer>().material = schwarzMat;
