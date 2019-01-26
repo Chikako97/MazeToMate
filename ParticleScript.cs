@@ -5,13 +5,15 @@ using UnityEngine;
 public class ParticleScript: MonoBehaviour {
 
     private ParticleSystem ps;
-    
+    private ParticleSystem ps1;
+
     // Use this for initialization
-	void Start () {
+    void Start () {
 
         ps = GetComponent<ParticleSystem>();
+        ps1 = GetComponent<ParticleSystem>();
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,5 +22,10 @@ public class ParticleScript: MonoBehaviour {
         {
             Destroy(gameObject);
         }
-	}
+
+        if (!ps1.isPlaying)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
