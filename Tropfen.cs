@@ -36,10 +36,10 @@ public class Tropfen : MonoBehaviour {
         for (int i = 0; i <= 10; i++)
         {
             //ZUfällige Position der Tropfen erzeugen (In der Groesse des Feldes)
-            spawnPos = new Vector3(Random.Range(1.5f, 39), -1.0f, Random.Range(6, 45));
+            spawnPos = new Vector3(Random.Range(1.5f, 39), 0.2f, Random.Range(0, 40));
             Instantiate(spawnTropfen1, spawnPos, Quaternion.identity);
 
-            spawnPos = new Vector3(Random.Range(1.5f, 39), -1.0f, Random.Range(6, 45));
+            spawnPos = new Vector3(Random.Range(1.5f, 39), 0.2f, Random.Range(0, 40));
             Instantiate(spawnTropfen2, spawnPos, Quaternion.identity);
         }
     
