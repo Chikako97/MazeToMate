@@ -4,36 +4,26 @@ using UnityEngine;
 
 public class Welt : MonoBehaviour
 {
+    public GameObject ps1;
     public GameObject raumPrefab;
-
     [SerializeField] Rigidbody rb;
-    bool weltStehe = false;
-    //float horizontal;
-   // float vertical;
+    bool bewegung;
     float jump;
-    //[SerializeField] float moveSpeed;
-    //[SerializeField] float turnSpeed;
     
     float translateFaktor = 3;
     float rotateFaktor = 100;
 
     GameObject Tor;
-    int durchgangStatus = 0;  // Status = 0 besagt, dass Spieler nichts berührt bzw alle Tore geschlossen sind
-    public Material schwarzMat;
-    public Material rot;
-
     GameObject truhe;
-    int truheIndex;
-    int truheStatus = 0;    // Status = 0 besagt, dass Spieler nichts berührt bzw alle Tore geschlossen sind
+    public GameObject[] kiste = new GameObject[7];
     public GameObject[] schluessel = new GameObject[12];
     public GameObject[] besitz = new GameObject[12];
-
-    int sperreStatus = 0;   // Status = 0 besagt, dass Spieler nichts berührt bzw alle Tore geschlossen sind
-    int sperreIndex;
     public GameObject[] sperre = new GameObject[8];
 
     void Start()
     {
+        bewegung = false;
+
         //Erzeugen der einzelnen Räume anhand des zuvor erstellten Prefab "Raum"
         GameObject[,] raum = new GameObject[4, 4];
 
@@ -103,137 +93,31 @@ public class Welt : MonoBehaviour
 
     void FixedUpdate()
     {
-       // Status 2 = "Oeffne Tür" wurde aktiviert und es oeffnet sich selbstständig und Spieler entfärbt sich und kann weiter gehen
-        if (durchgangStatus == 2)
-        {
-            Tor.transform.position = Tor.transform.position + new Vector3(0, Time.deltaTime, 0);
-            if (Tor.transform.position.y >= 1.5f)
-            {
-                durchgangStatus = 3;
-                weltStehe = false;
-                gameObject.GetComponent<Renderer>().material = rot;
-                Invoke("TorSchliesst", 2.5f);
-            }
-        }
-        // Tür schließt sich
-        else if (durchgangStatus == 4)
-        {
-            Tor.transform.position = Tor.transform.position - new Vector3(0, Time.deltaTime, 0);
-            if (Tor.transform.position.y <= 0.5f)
-            {
-                durchgangStatus = 0;
-            }
-        }
-        // Status 2 = "Oeffne truhe" wurde aktiviert und es oeffnet sich selbstständig und Spieler entfärbt sich und kann weiter gehen
-        if (truheStatus == 2)
-        {
-            truhe.transform.position = truhe.transform.position + new Vector3(0, Time.deltaTime, 0);
-            if (truhe.transform.position.y >= 1.1f)
-            {
-                //Das Tor ist für 2 Sekunden geoeffnet
-                truheStatus = 3;
-                Invoke("KisteSchliesst", 2.5f);
-                if (besitz[truheIndex].activeInHierarchy)
-                {
-                    weltStehe = false;
-                    gameObject.GetComponent<Renderer>().material = rot;
-                }
-            }
-        }
-        // Truhe schließt sich wieder 
-        else if (truheStatus == 4)
-        {
-            truhe.transform.position = truhe.transform.position - new Vector3(0, Time.deltaTime, 0);
-            if (truhe.transform.position.y <= 0.5f)
-            {
-                truheStatus = 0;
-            }
-        }
-
         //Steuerung der Spielfigur
-        if (!weltStehe)
+        if (!bewegung)
         {
             transform.Translate(new Vector3(0, 0, translateFaktor * Time.deltaTime * Input.GetAxis("Vertical")));
             transform.Rotate(new Vector3(0, rotateFaktor * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
-           
+
             if (Input.GetButtonUp("Jump"))
             {
-            rb.AddForce(0, 4, 0, ForceMode.Impulse);
+                rb.AddForce(0, 3.5f, 0, ForceMode.Impulse);
             }
-
         }
     }
 
-    // Reaktion bei Beruehrung wird ausgelöst = Spieler wird betäubt und verfärtb
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Tor")
+        if (other.gameObject.CompareTag("Tor"))
         {
-            Tor = other.gameObject;
-            durchgangStatus = 1;
-            weltStehe = true;
-            gameObject.GetComponent<Renderer>().material = schwarzMat;
+            other.gameObject.SetActive(false);
+            Tor.transform.Translate(0, 1.5f, 0);
+            Instantiate(ps1, transform.position, Quaternion.identity);
         }
-        else if (other.gameObject.tag == "Truhe")
+        else if (other.gameObject.CompareTag("Kiste"))
         {
-            truhe = other.gameObject;
-            truheIndex = System.Convert.ToInt32(truhe.name.Substring(5, 1));
-            truheStatus = 1;
-            weltStehe = true;
-            gameObject.GetComponent<Renderer>().material = schwarzMat;
+            other.gameObject.SetActive(false);
+            truhe.transform.Translate(0, 1.5f, 0);
         }
-        else if (other.gameObject.tag == "Sperre")
-        {
-            sperreIndex = System.Convert.ToInt32(other.gameObject.name.Substring(6, 1));
-            sperreStatus = 1;
-            weltStehe = true;
-            gameObject.GetComponent<Renderer>().material = schwarzMat;
-        }
-    }
-
-    void TorSchliesst()
-    {
-        durchgangStatus = 4;
-    }
-
-    public void OeffneTor()
-    {
-        if (durchgangStatus == 1)
-        {                               //Spieler wird betäubt und wechselt farbe
-            durchgangStatus = 2;
-        }
-    }
-
-    void TruheSchliesst()
-    {
-        truheStatus = 4;
-    }
-
-    public void OeffneTruhe()
-    {
-        if (truheStatus == 1)
-        {
-            truheStatus = 2;
-        }
-    }
-
-    public void NimmSchluesselAuf()
-    {
-        if (truheStatus == 3)
-        {
-            besitz[truheIndex].SetActive(true);
-            schluessel[truheIndex].SetActive(false);
-            weltStehe = false;
-            gameObject.GetComponent<Renderer>().material = rot;
-        }
-    }
-
-    public void SchliesseSperreAuf()
-    {
-        if (sperreStatus == 1 && besitz[sperreIndex].activeInHierarchy) 
-            sperre[sperreIndex].SetActive(false);
-        sperreStatus = 0;
-        weltStehe = false;
-        gameObject.GetComponent<Renderer>().material = rot;
     }
 }
