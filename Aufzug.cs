@@ -51,25 +51,5 @@ public class Aufzug : MonoBehaviour
                 bewegung = false;
             }
         }
-
-        else if (Input.GetKeyDown(KeyCode.D) && !bewegung)
-        {
-            bewegung = true;
-            bewegungZeit = Time.time;
-        }
-
-        else if (bewegung)
-        {
-            float zeit = (Time.time - bewegungZeit) / Gesamtzeit;
-            Vector3 Strecke = zeit * Gesamtstrecke;
-            transform.position = endPos - Strecke;
-            transform.position = endPos - Strecke;
-            transform.position = endPos - Strecke;
-
-            if (zeit >= 2)
-            {
-                bewegung = false;
-            }
-        }
     }
 }
