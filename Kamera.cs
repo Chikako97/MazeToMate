@@ -15,7 +15,19 @@ public class Kamera : MonoBehaviour
         transform.position = new Vector3(transform.position.x,
         transform.position.y + hoeheY, transform.position.z);
         transform.LookAt(spieler.transform);
-        transform.GetChild(0).transform.parent = null;
+    }
+    
+    void Exit(Collider other) {
+        if (other.tag == "Tile") {
+            RaycastHit hit;
+            
+            Ray down = new Ray(transform.position, -Vector3.up);
+            
+            if (!Physics.Raycast(down, out hit)) {
+                dead = true;
+                transform.GetChild(0).transform.parent = null;
+            }
+        }
     }
 }
 
