@@ -15,6 +15,7 @@ public class Kamera : MonoBehaviour
         transform.position = new Vector3(transform.position.x,
         transform.position.y + hoeheY, transform.position.z);
         transform.LookAt(spieler.transform);
+        transform.GetChild(0).transform.parent = null;
     }
 }
 
