@@ -5,17 +5,9 @@ using UnityEngine;
 public class Sammeln : MonoBehaviour
 {
     public GameObject ps;
-    public GameObject ps1;
+
 
     GameObject Tropfen;
-
-    GameObject RotSchluessel;
-    GameObject GruenSchluessel;
-    GameObject BlauSchluessel;
-    GameObject GelbSchluessel;
-    GameObject VioletSchluessel;
-    GameObject CyanSchluessel;
-    GameObject WeissSchluessel;
 
     int TropfenStatus = 0;
     public Material blau;
@@ -32,12 +24,6 @@ public class Sammeln : MonoBehaviour
 
         } else {
             gameObject.GetComponent<Renderer>().material = rot;
-        }
-
-        if (other.gameObject.CompareTag("Schluessel"))
-        {
-            other.gameObject.SetActive(false);
-            Instantiate(ps1, transform.position, Quaternion.identity);
         }
     }
 }
