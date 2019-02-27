@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tueroeffner : MonoBehaviour
 {
-    public Animation Tor;
+    public Animation Torname;
 
     // Use this for initialization
     void Start()
@@ -13,11 +13,11 @@ public class Tueroeffner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void OnTriggerStay()
     {
         if(Input.GetKey(KeyCode.P))
         {
-            Tor.Play();
+            Torname.Play();
         }
     }
 }
