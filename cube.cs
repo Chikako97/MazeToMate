@@ -17,6 +17,8 @@ public class cube : MonoBehaviour
     GameObject d;
     GameObject e;
 
+    GameObject cubelight;
+
     // Use this for initialization
     void Start()
     {
@@ -97,6 +99,12 @@ public class cube : MonoBehaviour
         c.transform.SetParent(GameObject.Find("Boden").transform);
         d.transform.SetParent(GameObject.Find("Boden").transform);
         e.transform.SetParent(GameObject.Find("Boden").transform);
+
+        //Licht
+        GameObject cubelight = new GameObject("The Light");
+        Light lightCom = cubelight.AddComponent<Light>();
+        lightCom.color = Color.white;
+        cubelight.transform.Translate(20.5f, 13, 71.87f);
 
     }
 
