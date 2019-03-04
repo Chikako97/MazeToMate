@@ -6,10 +6,16 @@ public class cube : MonoBehaviour
 {
     GameObject boden;
     GameObject plusx;
-    //GameObject minusx;
+    GameObject minusx;
     GameObject deckel;
     GameObject plusz;
     GameObject minusz;
+
+    GameObject a;
+    GameObject b;
+    GameObject c;
+    GameObject d;
+    GameObject e;
 
     // Use this for initialization
     void Start()
@@ -26,11 +32,11 @@ public class cube : MonoBehaviour
         plusx.transform.Translate(25.5f, 8, 71.87f);
         plusx.transform.Rotate(0, 0, 90);
 
-        /*GameObject minusx = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject minusx = GameObject.CreatePrimitive(PrimitiveType.Cube);
         minusx.name = "linkeWand";
         minusx.transform.localScale = new Vector3(10, (float)0.5, 10);
         minusx.transform.Translate(15.5f, 8, 71.87f);
-        minusx.transform.Rotate(0, 0, 90);*/
+        minusx.transform.Rotate(0, 0, 90);
 
         GameObject deckel = GameObject.CreatePrimitive(PrimitiveType.Cube);
         deckel.name = "Deckel";
@@ -49,9 +55,10 @@ public class cube : MonoBehaviour
         minusz.transform.Translate(20.5f, 8, 66.87f);
         minusz.transform.Rotate(90, 0, 0);
 
+        //Parenting Würfelseiten
         boden.transform.SetParent(GameObject.Find("Boden").transform);
         plusx.transform.SetParent(GameObject.Find("Boden").transform);
-        //minusx.transform.SetParent(GameObject.Find("Boden").transform);
+        minusx.transform.SetParent(GameObject.Find("Boden").transform);
         deckel.transform.SetParent(GameObject.Find("Boden").transform);
         plusz.transform.SetParent(GameObject.Find("Boden").transform);
         minusz.transform.SetParent(GameObject.Find("Boden").transform);
@@ -83,12 +90,20 @@ public class cube : MonoBehaviour
         e.transform.localScale = new Vector3(2, 1, 10);
         e.transform.Translate(20.5f, 6.5f, 73.87f);
         e.transform.Rotate(0, 90, 0);
+
+        //Parenting Säulen an Würfel
+        a.transform.SetParent(GameObject.Find("Boden").transform);
+        b.transform.SetParent(GameObject.Find("Boden").transform);
+        c.transform.SetParent(GameObject.Find("Boden").transform);
+        d.transform.SetParent(GameObject.Find("Boden").transform);
+        e.transform.SetParent(GameObject.Find("Boden").transform);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //boden.transform.Rotate(new Vector3(Time.deltaTime * 20, 0, 0));
+        boden.transform.Rotate(new Vector3(Time.deltaTime * 20, 0, 0));
 
     }
 }
