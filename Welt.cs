@@ -7,17 +7,12 @@ public class Welt : MonoBehaviour
 
     public GameObject raumPrefab;
     [SerializeField] Rigidbody rb;
-    bool bewegung;
-    float jump;
-    
-    float translateFaktor = 3;
-    float rotateFaktor = 100;
 
     public GameObject[] besitz = new GameObject[12];
 
     void Start()
     {
-        bewegung = false;
+        
 
         //Erzeugen der einzelnen Räume anhand des zuvor erstellten Prefab "Raum"
         GameObject[,] raum = new GameObject[4, 4];
@@ -89,15 +84,6 @@ public class Welt : MonoBehaviour
     void FixedUpdate()
     {
         //Steuerung der Spielfigur
-        if (!bewegung)
-        {
-            transform.Translate(new Vector3(0, 0, translateFaktor * Time.deltaTime * Input.GetAxis("Vertical")));
-            transform.Rotate(new Vector3(0, rotateFaktor * Time.deltaTime * Input.GetAxis("Horizontal"), 0));
-
-            if (Input.GetButtonUp("Jump"))
-            {
-                rb.AddForce(0, 3.5f, 0, ForceMode.Impulse);
-            }
-        }
+        
     }
 }
