@@ -5,21 +5,25 @@ using UnityEngine;
 public class NimmSchlussel : MonoBehaviour {
 
     public Component torschlussel;
-    public Component torschlussel1;
     public GameObject Schlussel;
+    public GameObject Besitz;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void OnTriggerStay () {
         if (Input.GetKey(KeyCode.P))
+        {
             torschlussel.GetComponent<BoxCollider>().enabled = true;
-            torschlussel1.GetComponent<BoxCollider>().enabled = true;
-
+        }
+        
         if (Input.GetKey(KeyCode.P))
+        {
             Schlussel.SetActive(false);
+            Besitz.SetActive(true);
+        }       
 	}
 }
