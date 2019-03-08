@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject Spieler;
     public int Lebensanzeige;
     public Text Lebenstext;
+    public GameObject Dead;
 
     // Use this for initialization
     void Start()
@@ -39,6 +40,7 @@ public class LevelManager : MonoBehaviour {
         {
             Time.timeScale = 0.0f;
             Debug.Log("Game over");
+            Dead.SetActive(true);
         } 
     }
 }
