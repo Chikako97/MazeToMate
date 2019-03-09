@@ -6,7 +6,6 @@ public class Sammeln : MonoBehaviour
 {
     public GameObject ps;
 
-
     GameObject Tropfen;
 
     int TropfenStatus = 0;
@@ -16,14 +15,20 @@ public class Sammeln : MonoBehaviour
     // Funktion, um Tropfen aufzusammeln und Farbe auf Blau zu ändern
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Tropfen"))
-        {
-            other.gameObject.SetActive(false);
-            Instantiate(ps, transform.position, Quaternion.identity);
-            gameObject.GetComponent<Renderer>().material = blau;
+        bool sammeln = other.gameObject.CompareTag("Tropfen");
 
-        } else {
-            gameObject.GetComponent<Renderer>().material = rot;
+        switch (sammeln)
+        {
+            case true:
+                other.gameObject.SetActive(false);
+                Instantiate(ps, transform.position, Quaternion.identity);
+                gameObject.GetComponent<Renderer>().material = blau;
+                break;
+            case false:
+                gameObject.GetComponent<Renderer>().material = rot;
+                break;
+            default:
+                break;
         }
     }
 }
