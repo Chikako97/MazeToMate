@@ -20,10 +20,6 @@ public class Spielfeld : MonoBehaviour
         unten.transform.Translate(19.91f, 0, 19.8f);
 
 
-        /*  //Find the Specular shader and change its Color to red
-          rend.material.shader = Shader.Find("Specular");
-          rend.material.SetColor("_SpecColor", Color.red); */
-
         //Start Welt 2
         GameObject boden = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Renderer rend2 = boden.GetComponent<Renderer>();
@@ -85,28 +81,5 @@ public class Spielfeld : MonoBehaviour
         GameObject Treppevorn7 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Treppevorn7.transform.localScale = new Vector3(3, 0.5f, 8);
         Treppevorn7.transform.Translate(25.2f, 3.27f, 50);
-
-        /*//Treppe von Welt 4 (Alex D)
-
-       GameObject Treppelinks = GameObject.CreatePrimitive(PrimitiveType.Cube);
-       //var boxCollider = (BoxCollider)Treppelinks.collider;
-       //boxCollider.center = new Vector3(2, 3, 4);
-       Treppelinks.transform.localScale = new Vector3(3, 0.5f, 5);
-       Treppelinks.transform.Translate(-22, 8, 21);
-       GameObject Treppelinks2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-       Treppelinks2.transform.localScale = new Vector3(3, 0.5f, 5);
-       Treppelinks2.transform.Translate(-19, 7, 21);
-       GameObject Treppelinks3 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-       Treppelinks3.transform.localScale = new Vector3(3, 0.5f, 5);
-       Treppelinks3.transform.Translate(-16, 6, 21);
-       GameObject Treppelinks4 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-       Treppelinks4.transform.localScale = new Vector3(3, 0.5f, 5);
-       Treppelinks4.transform.Translate(-13, 5, 21);
-       GameObject Treppelinks5 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-       Treppelinks5.transform.localScale = new Vector3(3, 0.5f, 5);
-       Treppelinks5.transform.Translate(-9.73f, 4, 21);
-       GameObject Treppelinks6 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-       Treppelinks6.transform.localScale = new Vector3(8.5f, 0.5f, 7);
-       Treppelinks6.transform.Translate(-4.08f, 3, 22.23f); */
     }
 }
