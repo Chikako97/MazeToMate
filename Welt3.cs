@@ -130,7 +130,7 @@ public class cube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        boden.transform.Rotate(new Vector3(Time.deltaTime * 20, 0, 0));
+        boden.transform.Rotate(new Vector3(Time.deltaTime * 10, 0, 0));
 
     }
 }
