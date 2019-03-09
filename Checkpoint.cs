@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour {
-    public LevelManager levelmanager;
+    public LevelManager levelCheckpoint;
 	// Use this for initialization
 	void Start () {
-        levelmanager = FindObjectOfType<LevelManager> ();
+        levelCheckpoint = FindObjectOfType<LevelManager> ();
 	}
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class Checkpoint : MonoBehaviour {
         {
             Debug.Log("Checkpoint erreicht");
             //Checkpoint speichern
-            levelmanager.Checkpoint = gameObject;
+            levelCheckpoint.Checkpoint = gameObject;
         }
     }
 }
