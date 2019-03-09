@@ -8,8 +8,6 @@ public class Welt : MonoBehaviour
     public GameObject raumPrefab;
     [SerializeField] Rigidbody rb;
 
-    public GameObject[] besitz = new GameObject[12];
-
     void Start()
     {
         
@@ -17,9 +15,13 @@ public class Welt : MonoBehaviour
         //Erzeugen der einzelnen Räume anhand des zuvor erstellten Prefab "Raum"
         GameObject[,] raum = new GameObject[4, 4];
 
-        for (int x = 0; x < 4; x++)
-            for (int z = 0; z < 4; z++)
-                raum[x, z] = (GameObject)Instantiate(raumPrefab, new Vector3(x * 10 + 5, 0, z * 10 + 5), Quaternion.identity);
+        for (int a = 0; a < 4; a++)
+        {
+            for (int b = 0; b < 4; b++)
+            {
+                raum[a, b] = (GameObject)Instantiate(raumPrefab, new Vector3(a * 10 + 5, 0, b * 10 + 5), Quaternion.identity);
+            }
+        }
 
         // Bsp Raum hat eine durchgehende linke wand (true), eine hintere Wand mit einem Tor zur Nachbarkammer (false),
         // eine durchgehende rechte Wand (true), eine vordere Wand mit einer Öffnung für ein Tor zum Nachbarraum (true)
@@ -47,43 +49,61 @@ public class Welt : MonoBehaviour
     // Räume konfigurieren und die jeweiligen Seiten, die ein Durchgang haben sollen, werden aktiviert/ deaktiviert
     void RaumKonfig(GameObject raum, bool wandLinks, bool wandHinten, bool wandRechts, bool wandVorne)
     {
-        if (wandLinks)
-        {
-            raum.transform.Find("WandLinksOffen").gameObject.SetActive(false);
-        }
-        else
-        {
-            raum.transform.Find("WandLinks").gameObject.SetActive(false);
-        }
-        if (wandHinten)
-        {
-            raum.transform.Find("WandHintenTor").gameObject.SetActive(false);
-        }
-        else
-        {
-            raum.transform.Find("WandHinten").gameObject.SetActive(false);
-        }
-        if (wandRechts)
-        {
-            raum.transform.Find("WandRechtsTor").gameObject.SetActive(false);
-        }
-        else
-        {
-            raum.transform.Find("WandRechts").gameObject.SetActive(false);
-        }
-        if (wandVorne)
-        {
-            raum.transform.Find("WandVorneOffen").gameObject.SetActive(false);
-        }
-        else
-        {
-            raum.transform.Find("WandVorne").gameObject.SetActive(false);
-        }
-    }
+        bool Links = wandLinks;
+        bool Hinten = wandHinten;
+        bool Rechts = wandRechts;
+        bool Vorn = wandVorne;
 
-    void FixedUpdate()
-    {
-        //Steuerung der Spielfigur
-        
+        switch (Links)
+        {
+            case true:
+                raum.transform.Find("WandLinksOffen").gameObject.SetActive(false);
+                break;
+            case false:
+                raum.transform.Find("WandLinks").gameObject.SetActive(false);
+                break;
+            default:
+                Debug.Log("Wand ist aktiv");
+                break;
+        }
+
+        switch (Hinten)
+        {
+            case true:
+                raum.transform.Find("WandHintenTor").gameObject.SetActive(false);
+                break;
+            case false:
+                raum.transform.Find("WandHinten").gameObject.SetActive(false);
+                break;
+            default:
+                Debug.Log("Wand ist aktiv");
+                break;
+        }
+
+        switch (Rechts)
+        {
+            case true:
+                raum.transform.Find("WandRechtsTor").gameObject.SetActive(false);
+                break;
+            case false:
+                raum.transform.Find("WandRechts").gameObject.SetActive(false);
+                break;
+            default:
+                Debug.Log("Wand ist aktiv");
+                break;
+        }
+
+        switch (Vorn)
+        {
+            case true:
+                raum.transform.Find("WandVorneOffen").gameObject.SetActive(false);
+                break;
+            case false:
+                raum.transform.Find("WandVorne").gameObject.SetActive(false);
+                break;
+            default:
+                Debug.Log("Wand ist aktiv");
+                break;
+        }
     }
 }
