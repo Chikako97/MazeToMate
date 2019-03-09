@@ -7,19 +7,17 @@ public class Spieler : MonoBehaviour
 {
     bool bewegung;
     float jump;
-    private bool isDead;
-    float translateFaktor = 3;
-    float rotateFaktor = 100;
+    private bool tot;
+    float translateFaktor = 3, rotateFaktor = 100;
     [SerializeField] Rigidbody rb;
     public GameObject Gameover;
 
     private int TropfenZaehler;
-    public Text TropfenText;
-    public Text highscoreText;
+    public Text TropfenText, highscoreText;
 
     void Start () {
         bewegung = false;
-        isDead = false;
+        tot = false;
         TropfenZaehler = 0;
         // lade Highscore
         highscoreText.text = PlayerPrefs.GetInt("Highscore").ToString();
@@ -34,11 +32,12 @@ public class Spieler : MonoBehaviour
 
             if (Input.GetButtonUp("Jump"))
             {
-                rb.AddForce(0, 3.5f, 0, ForceMode.Impulse);
+                rb.AddForce(0, 4.5f, 0, ForceMode.Impulse);
             }
         }
     }
 
+    //Tod des Spielers und Kamera stop
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Abgrund") {
@@ -48,20 +47,21 @@ public class Spieler : MonoBehaviour
 
             if (!Physics.Raycast(down, out hit))
             {
-                isDead = true;
+                tot = true;
                 Gameover.SetActive(true);
                 transform.GetChild(0).transform.parent = null;
             }
         }
     }
 
+    //Topfenzaehler und Highscore Anzeige
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Tropfen")
-            {
+        {
              TropfenZaehler++;
-             TropfenText.text = "Tropfen: " + TropfenZaehler.ToString();
-             Debug.Log("Tropfen: " + TropfenZaehler);
+             TropfenText.text = TropfenZaehler.ToString();
+             Debug.Log(TropfenZaehler);
 
              if(TropfenZaehler > PlayerPrefs.GetInt("Highscore"))
              {
