@@ -7,13 +7,9 @@ public class Tropfen : MonoBehaviour {
     public GameObject spawnTropfen1;
     public GameObject spawnTropfen2;
 
-    private Vector3 startPos;
-    private Vector3 endPos;
-    private float distance = 20f;
-    public float repeatTime = 5f;
-    //Zeit, um von A nach B zu kommen für Bewegte Tropfen
-    private float lerpTime = 10f;
-    private float currentLerpTime = 0;
+    private Vector3 startPos, endPos;
+    private float distance = 20f, repeatTime = 5f;
+    private float lerpTime = 10f, currentLerpTime = 0;
     private bool KeyHit = false;
 
     // Use this for initialization
