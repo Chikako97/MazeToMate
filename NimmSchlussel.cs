@@ -15,15 +15,21 @@ public class NimmSchlussel : MonoBehaviour {
 	
 	// Update is called once per frame
 	void OnTriggerStay () {
-        if (Input.GetKey(KeyCode.P))
+
+        bool caseSwitch = Input.GetKey(KeyCode.P);
+
+        switch (caseSwitch)
         {
-            torschlussel.GetComponent<BoxCollider>().enabled = true;
+            case true:
+                torschlussel.GetComponent<BoxCollider>().enabled = true;
+                break;
+            case false:
+                Schlussel.SetActive(false);
+                Besitz.SetActive(true);
+                break;
+            default:
+                Debug.Log("Schluessel aufgenommen");
+                break;
         }
-        
-        if (Input.GetKey(KeyCode.P))
-        {
-            Schlussel.SetActive(false);
-            Besitz.SetActive(true);
-        }       
-	}
+    }
 }
