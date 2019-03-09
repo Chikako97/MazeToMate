@@ -104,7 +104,7 @@ public class cube : MonoBehaviour
 
         //Schlüssel (Parenting)
         platzhalterSchlüssel.transform.Translate(20.5f, 10, 71.8f);
-        platzhalterSchlüssel.transform.SetParent(GameObject.Find("Boden").transform)
+        platzhalterSchlüssel.transform.SetParent(GameObject.Find("Boden").transform);
 
         //Licht
         GameObject cubelight = new GameObject("The Light");
@@ -113,7 +113,7 @@ public class cube : MonoBehaviour
         cubelight.transform.Translate(20.5f, 13, 71.87f);
 
         //Tag für Eisfläche
-        boden.tag = "Eis";
+        /*boden.tag = "Eis";
         plusx.tag = "Eis";
         minusx.tag = "Eis";
         plusz.tag = "Eis";
@@ -123,7 +123,7 @@ public class cube : MonoBehaviour
         b.tag = "Eis";
         c.tag = "Eis";
         d.tag = "Eis";
-        e.tag = "Eis";
+        e.tag = "Eis";*/
 
     }
 
