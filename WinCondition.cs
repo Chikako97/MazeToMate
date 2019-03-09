@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WinCondition : MonoBehaviour {
-    public LevelManager levelmanager;
+    public SpielManager spielmanager;
     public GameObject GewonnenText;
     // Use this for initialization
     void Start()
     {
-        levelmanager = FindObjectOfType<LevelManager>();
+        spielmanager = FindObjectOfType<SpielManager>();
     }
     void OnTriggerEnter(Collider other)
     {
@@ -17,7 +17,7 @@ public class WinCondition : MonoBehaviour {
             Debug.Log("Ziel erreicht");
             GameObject TomatenkumpelGameObject = GameObject.Find("Kumpel");
             GewonnenText.SetActive(true);
-            levelmanager.RespawnPlayer();
+            spielmanager.RespawnPlayer();
         }
     }
 }
