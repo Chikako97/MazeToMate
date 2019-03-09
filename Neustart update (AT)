@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Neustart : MonoBehaviour {
+    public SpielManager spielmanager;
+    // Use this for initialization
+    void Start()
+    {
+        spielmanager = FindObjectOfType<SpielManager>();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        bool neustart = other.tag == "Spieler";
+
+        switch (neustart)
+        {
+            case true:
+                Debug.Log("Tod");
+                spielmanager.RespawnPlayer();
+                break;
+            case false:
+                Debug.Log("Es ist  nicht der Spieler");
+                break;
+            default:
+                break;
+        }
+    }
+}
