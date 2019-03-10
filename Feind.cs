@@ -4,33 +4,30 @@ using UnityEngine;
 
 public class Feind : MonoBehaviour {
 
-    public LevelManager levelmanager;
-    public Vector3 startPos;
-    public Vector3 newPos;
-    public Vector3 tempPos;
-    public float speed;
+    public SpielManager spielmanager;
+    public Vector3 startPos, Pos2, Pos1;
+    public float Geschwindigkeit;
     public SpriteRenderer sr;
-    private bool hitable;
+    private bool verletzt;
     // Use this for initialization
     void Start()
     {
-        levelmanager = FindObjectOfType<LevelManager>();
+        spielmanager = FindObjectOfType<SpielManager>();
         startPos = transform.position;
         //zufällige Geschwindigkeit
-        speed = Random.Range(4f, 12f);
+        Geschwindigkeit = Random.Range(2f, 4f);
         sr = gameObject.GetComponent<SpriteRenderer>();
-        hitable = true;
+        verletzt = true;
     }
 
     // Update is called once per frame
     void Update () {
-        newPos = startPos;
-        newPos.x = newPos.x + Mathf.PingPong(Time.time * speed, 5) - 3;
-
-        transform.position = newPos;
+        Pos2 = startPos;
+        Pos2.x = Pos2.x + Mathf.PingPong(Time.time * Geschwindigkeit, 4) - 2;
+        transform.position = Pos2;
 
         //Bewegung positiv
-        if (newPos.x > tempPos.x)
+        if (Pos2.x > Pos1.x)
         {
             sr.flipX = true;
         }
@@ -39,23 +36,25 @@ public class Feind : MonoBehaviour {
             sr.flipX = false;
         }
         //Koordinaten aktueller Frame temporär abspeichern
-        tempPos = newPos;
+        Pos1 = Pos2;
 	}
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Spieler" && hitable == true)
+        if(collision.gameObject.tag == "Spieler" && verletzt == true)
         {
-            levelmanager.RespawnPlayer();
-            hitable = false;
+            spielmanager.RespawnPlayer();
+            verletzt = false;
             Debug.Log("Hit");
             Debug.Log(collision.collider.GetType());
-            StartCoroutine(FreezePlayer());
+            StartCoroutine(FreezePlayer()); 
         }
     }
+
+    //https://www.youtube.com/watch?v=GOKzrEioYeM&list=PLVGTm2ujeFKTOylxzHjB1uZSLLyZMWAaw&index=17
     IEnumerator FreezePlayer()
     {
         yield return new WaitForSeconds(2);
-        hitable = true;
+        verletzt = true;
     }
 }
