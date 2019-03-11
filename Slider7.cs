@@ -22,7 +22,7 @@ public class Slider7 : MonoBehaviour {
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.G) && !bewegung)
+        if (Input.GetKeyDown(KeyCode.F7) && !bewegung)
         {
             bewegung = true;
             bewegungZeitStart = Time.time;
