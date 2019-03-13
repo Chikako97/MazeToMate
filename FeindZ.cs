@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Feind : MonoBehaviour {
+public class FeindZ : MonoBehaviour
+{
 
     public SpielManager spielmanager;
     public Vector3 startPos, Pos2, Pos1;
@@ -19,24 +20,25 @@ public class Feind : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         Pos2 = startPos;
-        Pos2.x = Pos2.x + Mathf.PingPong(Time.time * Geschwindigkeit, 4) - 2;
+        Pos2.z = Pos2.z + Mathf.PingPong(Time.time * Geschwindigkeit, 4) - 2;
         transform.position = Pos2;
 
         //Koordinaten aktueller Frame temporär abspeichern
         Pos1 = Pos2;
-	}
+    }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Spieler" && verletzt == true)
+        if (collision.gameObject.tag == "Spieler" && verletzt == true)
         {
             spielmanager.RespawnPlayer();
             verletzt = false;
             Debug.Log("Hit");
             Debug.Log(collision.collider.GetType());
-            StartCoroutine(FreezePlayer()); 
+            StartCoroutine(FreezePlayer());
         }
     }
 
