@@ -40,25 +40,4 @@ public class Tropfen : MonoBehaviour {
         }
     
     }
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            KeyHit = true;
-        }
-
-        if (KeyHit == true)
-        {
-            currentLerpTime += Time.deltaTime;
-            if (currentLerpTime >= lerpTime)
-            {
-                currentLerpTime = lerpTime;
-            }
-
-            float Perc = currentLerpTime/lerpTime;
-            spawnTropfen1.transform.position = Vector3.Lerp(startPos, endPos, Perc);
-            spawnTropfen2.transform.position = Vector3.Lerp(startPos, endPos, Perc);
-
-        }
-    }
 }
