@@ -89,14 +89,14 @@ public class Welt2 : MonoBehaviour {
         GameObject hinderniss1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Renderer rend9 = hinderniss1.GetComponent<Renderer>();
         rend9.material = new Material(Shader.Find("Specular"));
-        rend9.material.SetColor("_Color", Color.green);
+        rend9.material.SetColor("_Color", Color.magenta);
         hinderniss1.transform.localScale = new Vector3(0.4f, 0.5f, 3);
         hinderniss1.transform.Translate(80.8f, 9.1f, 101);
 
         GameObject hinderniss2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Renderer rend10 = hinderniss2.GetComponent<Renderer>();
         rend10.material = new Material(Shader.Find("Specular"));
-        rend10.material.SetColor("_Color", Color.green);
+        rend10.material.SetColor("_Color", Color.magenta);
         hinderniss2.transform.localScale = new Vector3(0.4f, 0.5f, 3);
         hinderniss2.transform.Translate(133.49f, 9.1f, 76.19f);
 
