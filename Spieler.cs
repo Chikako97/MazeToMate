@@ -8,7 +8,7 @@ public class Spieler : MonoBehaviour
     bool bewegung;
     float jump;
     private bool tot;
-    float translateFaktor = 3, rotateFaktor = 100;
+    float translateFaktor = 2.5f, rotateFaktor = 80;
     [SerializeField] Rigidbody rb;
     public GameObject Gameover;
 
@@ -32,7 +32,7 @@ public class Spieler : MonoBehaviour
 
             if (Input.GetButtonUp("Jump"))
             {
-                rb.AddForce(0, 4.5f, 0, ForceMode.Impulse);
+                rb.AddForce(0, 5.2f, 0, ForceMode.Impulse);
             }
         }
     }
@@ -41,11 +41,11 @@ public class Spieler : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         if (other.tag == "Abgrund") {
-            RaycastHit hit;
+            RaycastHit kill;
 
-            Ray down = new Ray(transform.position, -Vector3.up);
+            Ray abgrund = new Ray(transform.position, -Vector3.up);
 
-            if (!Physics.Raycast(down, out hit))
+            if (!Physics.Raycast(abgrund, out kill))
             {
                 tot = true;
                 Gameover.SetActive(true);
