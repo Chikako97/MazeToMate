@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class SpielManager : MonoBehaviour {
 
-    public GameObject speicherpunkt;
-    public GameObject Spieler;
+    public GameObject speicherpunkt, Spieler, Dead;
     public int Lebensanzeige;
     public Text Lebenstext;
-    public GameObject Dead;
 
     // Use this for initialization
     void Start()
@@ -17,22 +15,11 @@ public class SpielManager : MonoBehaviour {
         Lebenstext.text = Lebensanzeige.ToString();
     }
 
-    void FixedUpdate()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("Spiel wird beendet");
-            Application.Quit();
-        }
-    }
-
     public void RespawnPlayer()
     {
-        //abziehen
         Lebensanzeige = Lebensanzeige - 1;
-        //aktualisieren
         Lebenstext.text = Lebensanzeige.ToString();
-        //Ueberprüfung
+
         bool leben = Lebensanzeige > 0;
 
         switch (leben)
