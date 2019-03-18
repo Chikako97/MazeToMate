@@ -14,8 +14,8 @@ public class Slider3 : MonoBehaviour {
     {
         bewegung = false;
         zeitGesamt = 2.5f;
-        startPunkt = new Vector3(67.145f, 8.56f, 101);
-        Vector3 zielPunkt = new Vector3(89.11f, 8.56f, 101);
+        startPunkt = new Vector3(114, 8.5f, 78.7f);
+        Vector3 zielPunkt = new Vector3(184.6f, 8.5f, 78.7f);
         streckeGesamt = zielPunkt - startPunkt;
     }
 
